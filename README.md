@@ -1,9 +1,13 @@
-Template for python-based projects with gitlab ci.
+Basic Template for GitLab CI with integrations tests, pre-commit, badges, coverage, flake8 and mypy
 
 * pre-commit
 * gitlab ci
 * badges
 * integration tests
+
+Mirror gitlab
+==================
+[GitLab Mirror](https://gitlab.com/GavrilovStepan01/AwesomeGitLab)
 
 Tests
 ==
