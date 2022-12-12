@@ -1,0 +1,73 @@
+stages:
+  - build
+  - test
+  - package
+
+.pip-install:
+  before_script:
+    - pip install --upgrade pip
+
+linter:
+  extends:
+    - .pip-install
+  image: python:3.11
+  stage: test
+  script:
+    - pip install flake8
+    - flake8 src
+    - pip install black
+    - black . --check --verbose --diff --color
+
+static-check:
+  extends:
+    - .pip-install
+  image: python:3.11
+  stage: test
+  script:
+    - pip install mypy
+    - mypy --install-types --non-interactive src/
+    - mypy src --config-file=mypy.ini
+  needs:
+    - linter
+
+api-tests:
+  stage: test
+  image: docker/compose:1.27.4
+  services:
+    - docker:dind
+  variables:
+    DOCKER_HOST: tcp://docker:2375/
+    DOCKER_DRIVER: overlay2
+    DOCKER_BUILDKIT: 1
+    COMPOSE_DOCKER_CLI_BUILD: 1
+  before_script:
+    - mkdir reports
+  script:
+    - docker-compose up --exit-code-from api-test
+  artifacts:
+    paths:
+      - reports/flake8/flake8stats.txt
+      - reports/junit/junit.xml
+      - reports/coverage/coverage.xml
+  needs:
+    - static-check
+
+badges:
+  image: python:3.11
+  stage: test
+  script:
+    - pip install genbadge
+    - pip install defusedxml
+    - genbadge coverage -i reports/coverage/coverage.xml -o coverage-badge.svg
+    - genbadge flake8 -i reports/flake8/flake8stats.txt -o flake8-badge.svg
+    - genbadge tests -i reports/junit/junit.xml -o tests-badge.svg
+
+  needs:
+    - api-tests
+  dependencies:
+    - api-tests
+  artifacts:
+    paths:
+      - flake8-badge.svg
+      - tests-badge.svg
+      - coverage-badge.svg

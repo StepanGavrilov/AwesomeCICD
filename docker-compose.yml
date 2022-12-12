@@ -1,0 +1,33 @@
+version: "3"
+
+networks:
+  inner_net:
+    driver: bridge
+
+services:
+
+  api-test:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "9999:9999"
+    networks:
+      - inner_net
+    environment:
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+    volumes:
+      - type: bind
+        source: /builds/GavrilovStepan01/awesomeci/reports
+#        source: reports
+        target: /reports
+
+  redis:
+    depends_on:
+      - api-test
+    image: redis:latest
+    networks:
+      - inner_net
+    ports:
+      - "6379:6379"
