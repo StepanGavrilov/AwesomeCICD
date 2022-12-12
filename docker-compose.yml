@@ -19,7 +19,7 @@ services:
       - REDIS_PORT=6379
     volumes:
       - type: bind
-        source: /builds/GavrilovStepan01/AwesomeGitLab
+        source: /builds/GavrilovStepan01/AwesomeGitLab/reports
         target: /reports
 
   redis:
