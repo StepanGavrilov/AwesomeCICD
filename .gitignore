@@ -140,3 +140,4 @@ cython_debug/
 .idea
 .mypy_cache
 .pytest_cache
+/reports/

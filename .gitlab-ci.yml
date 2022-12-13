@@ -42,8 +42,9 @@ api-tests:
     COMPOSE_DOCKER_CLI_BUILD: 1
   before_script:
     - mkdir reports
+    - ./env.sh CITest >> .env
   script:
-    - docker-compose up --exit-code-from api-test
+    - docker-compose -f docker-compose.yml up --exit-code-from api-test
   artifacts:
     paths:
       - reports/flake8/flake8stats.txt
