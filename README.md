@@ -4,32 +4,33 @@ Basic Template for GitLab CI with integrations tests, pre-commit, badges, covera
 * gitlab ci
 * badges
 * integration tests
+* coverage & junit
+* flake & black & mypy
+* docker-compose
 
 Mirror gitlab
 ==================
 [GitLab Mirror](https://gitlab.com/GavrilovStepan01/AwesomeGitLab)
 
-Tests
-==
-
-```
-pytest tests/test.py -vv
-```
-
-Dependencies
-==
-
-```
-poetry export -f requirements.txt --output requirements.txt
-```
-
 How commit ?
 ==
 
-```
+```shell
 git add .pre-commit-config.yaml
 ```
 
+```shell
+pre-commit run --all-files --show-diff-on-failure
 ```
-pre-commit run
+
+```shell
+pre-commit clean
+```
+
+Start
+==
+
+```shell
+  ./env.sh Development >> .env && docker-compose -f docker-compose.yml up --build
+
 ```

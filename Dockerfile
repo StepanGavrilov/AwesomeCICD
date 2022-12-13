@@ -16,8 +16,3 @@ RUN --mount=type=cache,target=/root/.cache/pip pip install -r requirements.txt
 COPY src/ src/
 COPY tests/ tests/
 COPY badges.sh badges.sh
-
-# Tets
-ENV PYTHONPATH=.
-#CMD coverage run -m pytest tests/test.py -vv -p no:cacheprovider && coverage report && coverage xml
-CMD ./badges.sh
