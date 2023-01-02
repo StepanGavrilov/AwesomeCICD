@@ -1,0 +1,13 @@
+version: "3"
+
+networks:
+  inner_net:
+    driver: bridge
+
+services:
+
+  api-test:
+    volumes:
+      - type: bind
+        source: "${API_SERVICE_REPORTS}"
+        target: /reports

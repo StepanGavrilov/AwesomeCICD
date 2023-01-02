@@ -71,5 +71,5 @@ repos:
         name: local-integration-tests
         language: system
         pass_filenames: false
-        entry: rm -rf reports & mkdir reports & ./env.sh PreCommitTest & docker-compose -f docker-compose.yml up --build --exit-code-from api-test
+        entry: ./entrypoint.sh PreCommitTest
         always_run: true
