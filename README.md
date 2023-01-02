@@ -12,6 +12,20 @@ Mirror gitlab
 ==================
 [GitLab Mirror](https://gitlab.com/GavrilovStepan01/AwesomeGitLab)
 
+Start Local
+==
+
+```shell
+  ./entrypoint.sh Local
+```
+
+Local tests
+==
+
+```shell
+  ./entrypoint.sh PreCommitTest
+```
+
 How commit ?
 ==
 
@@ -25,12 +39,4 @@ pre-commit run --all-files --show-diff-on-failure
 
 ```shell
 pre-commit clean
-```
-
-Start
-==
-
-```shell
-  ./env.sh Development >> .env && docker-compose -f docker-compose.yml up --build
-
 ```

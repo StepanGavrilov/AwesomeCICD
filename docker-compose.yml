@@ -8,32 +8,23 @@ services:
 
   api-test:
     container_name: "API_${CONTOUR}"
-    env_file:
-      - .env
     build:
       context: .
       dockerfile: Dockerfile
+    env_file:
+      - .env
     ports:
       - "9999:9999"
     networks:
       - inner_net
-    environment:
-      - REDIS_HOST=redis
-      - REDIS_PORT=6379
     entrypoint: "${API_ENTRYPOINT}"
-    volumes:
-      - type: bind
-        source: "${API_SERVICE_REPORTS}"
-        target: /reports
 
   redis:
     container_name: "REDIS_${CONTOUR}"
+    image: redis:latest
     env_file:
       - .env
     depends_on:
       - api-test
-    image: redis:latest
     networks:
       - inner_net
-    ports:
-      - "6379:6379"
