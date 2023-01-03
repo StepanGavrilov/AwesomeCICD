@@ -1,0 +1,9 @@
+language: python
+python:
+  - "3.11"
+
+services:
+  - docker
+
+script:
+  - ./entrypoint.sh PreCommitTest
