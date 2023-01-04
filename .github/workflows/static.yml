@@ -10,8 +10,8 @@ on:
       - '**'        # matches every branch
 
 jobs:
-  linter:
-    name: Linter checks
+  static-check:
+    name: Static checks
     runs-on: ubuntu-latest
 
     steps:
