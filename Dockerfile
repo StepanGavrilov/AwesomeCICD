@@ -11,7 +11,7 @@ WORKDIR /
 
 # Dependencies
 COPY requirements.txt requirements.txt
-RUN --mount=type=cache,target=/root/.cache/pip pip install -r requirements.txt
+RUN --mount=type=cache,target=/ pip install -r requirements.txt
 
 COPY src/ src/
 COPY tests/ tests/
