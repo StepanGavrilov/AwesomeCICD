@@ -43,7 +43,7 @@ jobs:
 
   integrations-testing:
     name: integrations-testing
-    needs: linter
+    needs: staic
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
