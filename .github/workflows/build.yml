@@ -1,11 +1,15 @@
+name: Build
 on:
-  push: # For test deploy stage only, in future set only master branch and release!
+  workflow_run: # For test deploy stage only, in future set only master branch and release!
+    workflows: [ "linter" ]
+    types:
+      - completed
     branches:
       - '*'         # matches every branch that doesn't contain a '/'
       - '*/*'       # matches every branch containing a single '/'
       - '**'        # matches every branch
-jobs:
 
+jobs:
   push_to_registry:
     name: Push Docker image to Docker Hub
     runs-on: ubuntu-latest
