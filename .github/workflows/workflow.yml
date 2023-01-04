@@ -25,19 +25,19 @@ jobs:
       - name: Check flake8
         run: flake8 src
 
-    static:
-      needs: linter
-      name: static
-      runs-on: ubuntu-latest
-      steps:
-        - uses: actions/checkout@v3
-        - uses: actions/setup-python@v4
-          with:
-            python-version: "3.11"
-        - name: Installing mypy
-          run: pip install mypy
-        - name: Check mypy
-          run: mypy src --config-file=mypy.ini
+  static:
+    needs: linter
+    name: static
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+      - name: Installing mypy
+        run: pip install mypy
+      - name: Check mypy
+        run: mypy src --config-file=mypy.ini
 
     push_to_registry:
       needs: static
