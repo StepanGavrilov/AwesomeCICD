@@ -26,8 +26,8 @@ jobs:
         run: flake8 src
 
   static:
-    needs: linter
     name: static
+    needs: linter
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -42,17 +42,19 @@ jobs:
         run: mypy src --config-file=mypy.ini
 
   integrations-testing:
+    name: integrations-testing
     needs: linter
-    name: static
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - name: docker-compose build and up
+      - uses: actions/checkout@v2
+      - name: Build the stack
+        run: docker-compose up -d
+      - name: Test
         run: ./entrypoint.sh PreCommitTest
 
   push_to_registry:
-    needs: integrations-testing
     name: build
+    needs: integrations-testing
     runs-on: ubuntu-latest
     steps:
       - name: Check out the repo
