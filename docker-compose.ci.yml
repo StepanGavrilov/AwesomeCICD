@@ -6,7 +6,7 @@ networks:
 
 services:
 
-  api-test:
+  api:
     volumes:
       - type: bind
         source: "${API_SERVICE_REPORTS}"

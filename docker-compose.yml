@@ -6,7 +6,7 @@ networks:
 
 services:
 
-  api-test:
+  api:
     container_name: "API_${CONTOUR}"
     build:
       context: .
@@ -25,6 +25,6 @@ services:
     env_file:
       - .env
     depends_on:
-      - api-test
+      - api
     networks:
       - inner_net
