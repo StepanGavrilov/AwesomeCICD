@@ -8,7 +8,7 @@ on:
 
 jobs:
   linter:
-    name: Linter checks
+    name: Linter
     runs-on: ubuntu-latest
 
     steps:

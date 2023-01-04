@@ -11,8 +11,7 @@ on:
 
 jobs:
   static-check:
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
-    name: Static checks
+    name: Static
     runs-on: ubuntu-latest
 
     steps:
