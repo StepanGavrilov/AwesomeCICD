@@ -41,6 +41,14 @@ jobs:
       - name: Check mypy
         run: mypy src --config-file=mypy.ini
 
+  integrations-testing:
+    needs: linter
+    name: static
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        run: ./entrypoint.sh PreCommitTest
+
   push_to_registry:
     needs: static
     name: build
@@ -65,3 +73,4 @@ jobs:
           push: true
           platforms: linux/amd64
           tags: ${{ secrets.DOCKER_USERNAME }}/api:latest
+
