@@ -51,7 +51,7 @@ jobs:
         run: ./entrypoint.sh PreCommitTest
 
   push_to_registry:
-    needs: integrations-testing:
+    needs: integrations-testing
     name: build
     runs-on: ubuntu-latest
     steps:
