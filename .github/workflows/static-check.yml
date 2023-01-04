@@ -1,4 +1,5 @@
 name: Static
+run-name: Static
 on:
   workflow_run: # For test deploy stage only, in future set only master branch and release!
     workflows: [ "Linter" ]
@@ -11,6 +12,7 @@ on:
 
 jobs:
   static-check:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     name: Static checks
     runs-on: ubuntu-latest
 

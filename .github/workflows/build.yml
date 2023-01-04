@@ -1,4 +1,5 @@
 name: Build
+run-name: Build
 on:
   workflow_run: # For test deploy stage only, in future set only master branch and release!
     workflows: [ "Static" ]
@@ -11,6 +12,7 @@ on:
 
 jobs:
   push_to_registry:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     name: Push Docker image to Docker Hub
     runs-on: ubuntu-latest
 
