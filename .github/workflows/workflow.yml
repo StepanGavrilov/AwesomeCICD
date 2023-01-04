@@ -2,9 +2,9 @@ name: CICD
 on:
   push:
     branches:
-      - '*'         # matches every branch that doesn't contain a '/'
-      - '*/*'       # matches every branch containing a single '/'
-      - '**'        # matches every branch
+      - '*'
+      - '*/*'
+      - '**'
 
 jobs:
 
@@ -55,6 +55,7 @@ jobs:
   push_to_registry:
     name: build
     needs: integrations-testing
+    if: github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
     steps:
       - name: Check out the repo
