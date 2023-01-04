@@ -1,5 +1,6 @@
 Basic Template for GitLab CI with integrations tests, pre-commit, badges, coverage, flake8 and mypy
 
+* GitHub cicd with deploy to cloud
 * pre-commit
 * gitlab ci
 * badges
@@ -7,6 +8,10 @@ Basic Template for GitLab CI with integrations tests, pre-commit, badges, covera
 * coverage & junit
 * flake & black & mypy
 * docker-compose
+
+CICD Architecture
+==================
+![cicd.png](examples/cicd.png)
 
 Mirror gitlab
 ==================
