@@ -2,7 +2,7 @@ name: Static
 run-name: Static
 on:
   workflow_run: # For test deploy stage only, in future set only master branch and release!
-    workflows: [ "Linter" ]
+    workflows: [ "linter" ]
     types:
       - completed
     branches:

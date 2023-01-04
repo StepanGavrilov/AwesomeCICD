@@ -2,7 +2,7 @@ name: Build
 run-name: Build
 on:
   workflow_run: # For test deploy stage only, in future set only master branch and release!
-    workflows: [ "Static" ]
+    workflows: [ "static-check" ]
     types:
       - completed
     branches:
