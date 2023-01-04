@@ -38,6 +38,15 @@ elif [ "$contur" = "Local" ]; then
   echo REDIS_HOST=redis >>.env
   echo REDIS_PORT=6379 >>.env
 
+elif [ "$contur" = "Prod" ]; then
+  # shellcheck disable=SC2129
+  # shellcheck disable=SC2129
+  echo CONTOUR=Prod >>.env
+  echo API_ENTRYPOINT='uvicorn src.asgi:app --host 0.0.0.0 --reload --port 9999' >>.env
+  echo API_SERVICE_REPORTS=reports/ >>.env
+  # redis
+  echo REDIS_HOST=redis >>.env
+  echo REDIS_PORT=6379 >>.env
 else
   echo No countur settings "$contur"
 fi

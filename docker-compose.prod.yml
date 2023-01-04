@@ -8,9 +8,7 @@ services:
 
   api:
     container_name: "API_${CONTOUR}"
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: devgavrilovstepan/api:latest
     env_file:
       - .env
     ports:
