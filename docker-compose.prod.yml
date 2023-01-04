@@ -1,0 +1,28 @@
+version: "3"
+
+networks:
+  inner_net:
+    driver: bridge
+
+services:
+
+  api:
+    container_name: "API_${CONTOUR}"
+    image: devgavrilovstepan/api:latest
+    env_file:
+      - .env
+    ports:
+      - "9999:9999"
+    networks:
+      - inner_net
+    entrypoint: "${API_ENTRYPOINT}"
+
+  redis:
+    container_name: "REDIS_${CONTOUR}"
+    image: redis:latest
+    env_file:
+      - .env
+    depends_on:
+      - api
+    networks:
+      - inner_net

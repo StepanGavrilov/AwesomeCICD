@@ -13,6 +13,9 @@ elif [ "$contur" = "CITest" ]; then
 elif [ "$contur" = "Local" ]; then
   echo "$contur"
   docker-compose -f docker-compose.yml up --build
+elif [ "$contur" = "Prod" ]; then
+  echo "$contur"
+  docker-compose -f docker-compose.prod.yml up --build -d
 else
   echo No countur settings "$contur"
 fi
