@@ -1,5 +1,4 @@
 name: Linter
-run-name: Linter
 on:
   push:
     branches:
