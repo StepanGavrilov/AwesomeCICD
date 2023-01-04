@@ -1,0 +1,29 @@
+name: Static
+on:
+  workflow_run: # For test deploy stage only, in future set only master branch and release!
+    workflows: [ "Linter" ]
+    types:
+      - completed
+    branches:
+      - '*'         # matches every branch that doesn't contain a '/'
+      - '*/*'       # matches every branch containing a single '/'
+      - '**'        # matches every branch
+
+jobs:
+  linter:
+    name: Linter checks
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+
+      - name: Installing mypy
+        run: pip install mypy
+
+      - name: Check mypy
+        run: mypy src --config-file=mypy.ini
